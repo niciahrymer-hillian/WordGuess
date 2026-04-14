@@ -19,7 +19,7 @@ class Wordguess:
             else:
                 display += "_ "
         return display.strip()
-   def make_guess(self, letter):
+    def make_guess(self, letter):
         """Process a single letter guess"""
         letter = letter.upper()
 
@@ -49,4 +49,24 @@ class Wordguess:
             status += f"Guessed: {', '.join(sorted(self.guessed_letters))}\n"
             status += f"Attempts remaining: {self.max_attempts - self.wrong_guesses}\n"
             return status
-        
+class Person:
+    def __init__(self, name):
+        self.name = name
+        self.score = 0
+        self.games_played = 0
+        self.games_won = 0
+    def update_score(self, points):
+        """Add points to player's score"""
+        self.score += points
+    def record_game(self, won):
+        """Track game statistics"""
+        self.games_played += 1
+        if won:
+            self.games_won += 1
+            
+    def get_win_rate(self):
+        """Calculate winning percentage"""
+        if self.games_played == 0:
+            return 0.0
+        return (self.games_won / self.games_plaed) * 100
+         
