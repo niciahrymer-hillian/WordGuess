@@ -19,4 +19,19 @@ class Wordguess:
             else:
                 display += "_ "
         return display.strip()
-    
+   def make_guess(self, letter):
+        """Process a single letter guess"""
+        letter = letter.upper()
+
+        if len(letter) != 1 or not letter.isalpha():
+            return "Please guess a single letter"
+        if letter in self.guessed_letters:
+            return "You already guessed that letter"
+        self.guessed_letters.add(letter)
+        
+        if letter in self.word:
+            return f"Good gurss! {letter} is in the word"
+        else:
+            self.wrong_guesses += 1
+            return f"Sorry, {letter} is not in the word"
+        
