@@ -10,3 +10,8 @@ WordGuess game implementation.
 class WordGuess:
     """WordGuess game class - ready for implementation."""
     pass
+    def welcome():
+        print("Welcome to WordGuess!")
+        while True:
+            guess = input("Guess a letter: ")
+            print(f"You guessed: {guess}")
