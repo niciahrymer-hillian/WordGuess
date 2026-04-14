@@ -6,7 +6,8 @@ class PersonInterface(ABC):
     
     @abstractmethod
     def get_first_name(self) -> str:
-        """Get the first name."""
+        """Return the person's first name."""
+        raise
         pass
     
     @abstractmethod
@@ -16,7 +17,8 @@ class PersonInterface(ABC):
     
     @abstractmethod
     def get_last_name(self) -> str:
-        """Get the last name."""
+        """Return the person's last name."""
+        raise
         pass
     
     @abstractmethod
@@ -37,4 +39,9 @@ class PersonInterface(ABC):
     @abstractmethod
     def __str__(self) -> str:
         """Return string representation."""
+        pass
+    @abstractmethod
+    def get_score(self) -> int:
+        """Return the person's current score."""
+        raise NotImplementedError("Must implement get_score method")
         pass
