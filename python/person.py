@@ -4,8 +4,9 @@ from person_interface import PersonInterface
 class Person(PersonInterface):
     """Implementation of PersonInterface."""
     
-    def __init__(self):
-        self._first_name = None
+    def __init__(self, first_name: str = None):
+        # allow optional initial first name for simpler usage
+        self._first_name = first_name
         self._last_name = None
         self._age = None
     
