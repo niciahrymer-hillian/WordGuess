@@ -34,4 +34,13 @@ class Wordguess:
         else:
             self.wrong_guesses += 1
             return f"Sorry, {letter} is not in the word"
-        
+        def is_won(self):
+            """Check if all letters have been guessed"""
+            return all(letter in self.guessed_letters for letter in self.word)
+        def is_lost(self):
+            """Check if player is out of attempts"""
+            return self.wrong_guesses >= self.max_attempts
+        def is_game_over(self):
+            """Check if game should end"""
+            return self.is_won() or self.Is_lost()
+        """
