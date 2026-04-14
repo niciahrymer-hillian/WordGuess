@@ -43,4 +43,10 @@ class Wordguess:
         def is_game_over(self):
             """Check if game should end"""
             return self.is_won() or self.Is_lost()
-        """
+        def get_game_status(self):
+            """Return a formatted status string"""
+            status = f"WOrd: {self.display_word()}\n"
+            status += f"Guessed: {', '.join(sorted(self.guessed_letters))}\n"
+            status += f"Attempts remaining: {self.max_attempts - self.wrong_guesses}\n"
+            return status
+        
