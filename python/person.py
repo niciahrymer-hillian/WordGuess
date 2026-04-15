@@ -1,32 +1,13 @@
-from person_interface import PersonInterface
-
-
-class Person(PersonInterface):
-    """Implementation of PersonInterface."""
+class Person:
+    """Simple Person class for the game."""
     
-    def __init__(self, first_name: str = None):
-        # allow optional initial first name for simpler usage
-        self._first_name = first_name
-        self._last_name = None
-        self._age = None
+    def __init__(self, name: str, age: int):
+        self.name = name
+        self.age = age
+        self.score = 0
     
-    def get_first_name(self) -> str:
-        return self._first_name
+    def add_score(self, points: int):
+        self.score += points
     
-    def set_first_name(self, first_name: str) -> None:
-        self._first_name = first_name
-    
-    def get_last_name(self) -> str:
-        return self._last_name
-    
-    def set_last_name(self, last_name: str) -> None:
-        self._last_name = last_name
-    
-    def get_age(self) -> int:
-        return self._age
-    
-    def set_age(self, age: int) -> None:
-        self._age = age
-    
-    def __str__(self) -> str:
-        return f"Person(first_name={self._first_name}, last_name={self._last_name}, age={self._age})"
+    def __str__(self):
+        return f"Person(name={self.name}, age={self.age}, score={self.score})"

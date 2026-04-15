@@ -1,12 +1,40 @@
-"""
-Test class for Hangman implementation.
+from wordguess import Wordguess
 
-@author xt0fer
-@version 1.0.0
-@date 5/27/21 11:02 AM
-"""
 
-from hangman import Hangman
+def test_wordguess_creation():
+    game = Wordguess("PYTHON")
+    assert game.word == "PYTHON"
+    assert game.guessed_letters == set()
+    assert game.max_attempts == 6
+    assert game.wrong_guesses == 0
+
+
+def test_make_guess_correct():
+    game = Wordguess("PYTHON")
+    result = game.make_guess("P")
+    assert "Good guess" in result
+    assert "P" in game.guessed_letters
+
+
+def test_make_guess_wrong():
+    game = Wordguess("PYTHON")
+    result = game.make_guess("Z")
+    assert "Sorry" in result
+    assert game.wrong_guesses == 1
+
+
+def test_is_won():
+    game = Wordguess("HI")
+    game.make_guess("H")
+    game.make_guess("I")
+    assert game.is_won()
+
+
+def test_is_lost():
+    game = Wordguess("HI")
+    for letter in "ABCDEFG":
+        game.make_guess(letter)
+    assert game.is_lost()
 
 
 class TestHangman:

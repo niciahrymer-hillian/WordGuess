@@ -1,6 +1,6 @@
 
 import random
-from person_interface import PersonInterface
+
 from person import Person
 
 # Module-level word list used by the game loop below
@@ -15,8 +15,6 @@ def welcome():
         
 
 class Wordguess:
-    WORD_LIST = ["JUNGLE", "GOOGLE", "BOUNTY", "TRIANGLE", "ZIPCODE", "PYTHON"]
-
     def __init__(self, word):
         self.word = word.upper()
         self.guessed_letters = set()
@@ -65,21 +63,35 @@ class Wordguess:
             return status
 if __name__ == "__main__":
     welcome()
+    name = input("Enter your name: ")
+    age = int(input("Enter your age: "))
+    player = Person(name, age)
+    print(f"Hello {name}, age {age}! Your score: {player.score}")
     while True:
         word = random.choice(WORD_LIST)
-        player_name = input("Enter your name: ")
-        # instantiate Person with name for a simpler API
-        player = Person(player_name)
-
         wordguess = Wordguess(word)
 
         while not wordguess.is_game_over():
             print(wordguess.get_game_status())
-            guess = input("Guess a letter: ")
+            guess = input("Guess a letter (or 'quit' to quit): ").strip().lower()
+            if guess == "quit":
+                print("Quitting the game.")
+                break
             result = wordguess.make_guess(guess)
             print(result)
 
-        again = input("Play again? [y/N]: ").strip().lower()
-        if again != "y":
+        if wordguess.is_won():
+            print(f"You won! The word was {wordguess.word}")
+            player.add_score(10)
+        else:
+            print(f"You lost. The word was {wordguess.word}")
+
+        print(f"Score: {player.score}")
+
+        again = input("Play again? [y/n/q]: ").strip().lower()
+        if again == "q" or again == "quit":
+            print("Thanks for playing!")
+            break
+        elif again != "y":
             break
          
